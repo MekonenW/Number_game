@@ -1,0 +1,40 @@
+<h2>Welcome to the Great Number Game!</h2>
+<p>I am thinking of a number between 1 and 100</p>
+<p>Take a guess!</p>
+
+<form action="/" method="POST">
+<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+<input type="number" name="number">
+<input type="submit" value="Guess a number!">
+</form>
+<hr>
+
+<%= session[:number] %>
+
+
+
+
+<% if flash[:failure] != nil %>
+
+	<div id="again">
+		<%= flash[:failure] %>
+	</div>
+<% end %>
+
+
+
+
+<% if flash[:success] != nil %>
+
+<div id="gameOver">
+	<%= flash[:success] %>
+	<form action="/reset" method="POST">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="submit" value="Play again!">
+	</form>
+</div>
+
+<% end %>
+
+
+
